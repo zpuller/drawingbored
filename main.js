@@ -1,25 +1,56 @@
 var canvas = document.getElementById("canvas");
 var tools = document.getElementById("tools");
-var ctx
+var left_click_down
 
-ctx = canvas.getContext("2d");
-var image_data = ctx.createImageData(canvas.width,canvas.height);
-var data  = image_data.data;
+canvas.width = 1920;
+canvas.height = 1080;
 
-for (var i = 0; i < data.length;)
+function draw_canvas_background()
 {
-  data[i] = 0;
-  ++i;
-  data[i] = 0;
-  ++i;
-  data[i] = 255 * i / data.length;
-  ++i;
-  data[i] = 255;
-  ++i;
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "rgb(0, 0,0)";
+  ctx.fillRect (0, 0, canvas.width, canvas.height);
 }
 
-ctx.putImageData(image_data, 0, 0);
+function draw_tools_background()
+{
+  ctx = tools.getContext("2d");
+  ctx.fillStyle = "rgb(0, 0, 255)";
+  ctx.fillRect (0, 0, tools.width, tools.height);
+}
 
-ctx = tools.getContext("2d");
-ctx.fillStyle = "rgb(0, 200,0)";
-ctx.fillRect (0, 0, tools.width, tools.height);
+function draw_rectangle(x, y, width, height)
+{
+  var ctx = canvas.getContext("2d");
+  var image_data = ctx.createImageData(width, height);
+  var data  = image_data.data;
+  for (var i = 0; i < data.length;)
+  {
+    //rgba
+    data[i] = 150;
+    ++i;
+    data[i] = 160;
+    ++i;
+    data[i] = 30; 
+    ++i;
+    data[i] = 255;
+    ++i;
+  }
+
+  ctx.putImageData(image_data, x, y);
+}
+
+function handle_mousemove(event)
+{
+  draw_rectangle(canvas.width * (event.offsetX / canvas.clientWidth), canvas.height * (event.offsetY / canvas.clientHeight), 10, 10)
+}
+
+window.addEventListener("mousedown", function() {
+    handle_mousemove(event);
+    canvas.addEventListener("mousemove", handle_mousemove);
+    }); 
+window.addEventListener("mouseup", function() { canvas.removeEventListener("mousemove", handle_mousemove); }); 
+
+draw_canvas_background()
+draw_tools_background()
+draw_pixels()
