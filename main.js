@@ -8,13 +8,6 @@ text_cursor.y = 50;
 canvas.width = 1920;
 canvas.height = 1080;
 
-function init_font()
-{
-  var ctx = canvas.getContext("2d");
-  ctx.font = "250% Arial";
-  ctx.fillStyle = "red";
-}
-
 function draw_canvas_background()
 {
   var ctx = canvas.getContext("2d");
@@ -74,7 +67,6 @@ window.addEventListener("mousedown", function() {
     }); 
 window.addEventListener("mouseup", function() { canvas.removeEventListener("mousemove", handle_mousemove); }); 
 
-init_font();
 draw_canvas_background();
 draw_tools_background();
 
