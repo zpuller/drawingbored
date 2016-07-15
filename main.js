@@ -53,4 +53,3 @@ window.addEventListener("mouseup", function() { canvas.removeEventListener("mous
 
 draw_canvas_background()
 draw_tools_background()
-draw_pixels()
