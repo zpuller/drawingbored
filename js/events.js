@@ -71,6 +71,7 @@ function start_drawing(event)
   var handler = draw_mode == 'erase' ? handle_mousemove_erase : handle_mousemove_draw;
   handler(event);
   canvas.addEventListener('mousemove', handler); 
+  canvas.addEventListener('touchmove', handler);
 }
 
 function start_typing(event)
@@ -90,7 +91,7 @@ function stop_typing(event)
 
 function handle_mousedown(event)
 {
-  var left_click = event.which == 1;
+  var left_click = event.which == 1 || event.which == 0;
   if (left_click)
   {
     if (draw_mode == 'pen' || draw_mode == 'erase')
@@ -104,4 +105,6 @@ function handle_mouseup(event)
 {
   canvas.removeEventListener('mousemove', handle_mousemove_draw);
   canvas.removeEventListener('mousemove', handle_mousemove_erase);
+  canvas.removeEventListener('touchmove', handle_mousemove_draw);
+  canvas.removeEventListener('touchmove', handle_mousemove_erase);
 }
