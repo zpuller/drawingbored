@@ -8,6 +8,9 @@ var text_cursor = {};
 canvas.width = 1920;
 canvas.height = 1080;
 
+var beige = [150, 160, 30, 255];
+var black = [0, 0, 0, 255];
+
 function draw_canvas_background()
 {
   var ctx = canvas.getContext("2d");
@@ -15,14 +18,9 @@ function draw_canvas_background()
   ctx.fillRect (0, 0, canvas.width, canvas.height);
 }
 
-function draw_tools_background()
-{
-  var ctx = tools.getContext("2d");
-  ctx.fillStyle = "rgb(0, 0, 255)";
-  ctx.fillRect (0, 0, tools.width, tools.height);
-}
-
-function draw_rectangle(x, y, width, height)
+// could just use ctx.fillRect() but keeping this for
+// reference if I want fancy pixel stuff later 
+function draw_rectangle(x, y, width, height, color)
 {
   var ctx = canvas.getContext("2d");
   var image_data = ctx.createImageData(width, height);
@@ -30,13 +28,13 @@ function draw_rectangle(x, y, width, height)
   for (var i = 0; i < data.length;)
   {
     //rgba
-    data[i] = 150;
+    data[i] = color[0];
     ++i;
-    data[i] = 160;
+    data[i] = color[1];
     ++i;
-    data[i] = 30; 
+    data[i] = color[2];
     ++i;
-    data[i] = 255;
+    data[i] = color[3];
     ++i;
   }
 
@@ -47,9 +45,28 @@ function draw_letter(key)
 {
   var ctx = canvas.getContext("2d");
   ctx.font = "250% Arial";
-  ctx.fillStyle = "red";
+  ctx.fillStyle = "#96A01E";
 
   var width = ctx.measureText(key).width;
   ctx.fillText(key, text_cursor.x, text_cursor.y);
   text_cursor.x += width;
+}
+
+function draw_help()
+{
+  text_cursor.x = 5;
+  text_cursor.y = 0;
+
+  var ctx = canvas.getContext("2d");
+  ctx.font = "250% Arial";
+  ctx.fillStyle = "#96A01E";
+
+  text_cursor.y += 50; 
+  ctx.fillText("pen: p", text_cursor.x, text_cursor.y);
+  text_cursor.y += 50; 
+  ctx.fillText("erase: e", text_cursor.x, text_cursor.y);
+  text_cursor.y += 50; 
+  ctx.fillText("text: t (click to type, esc to stop)", text_cursor.x, text_cursor.y);
+  text_cursor.y += 50; 
+  ctx.fillText("clear screen: c", text_cursor.x, text_cursor.y);
 }
