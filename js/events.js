@@ -7,9 +7,10 @@ function handle_mousemove_draw(event)
   update_pos(event, click);
   var size = 10;
   var color = beige;
+  var gap = 1;
 
-  draw_line(last_click, click, size, color);
-  send_draw_line(last_click, click, size, color);
+  draw_line(last_click, click, size, color, gap);
+  send_draw_line(last_click, click, size, color, gap);
 
   last_click.x = click.x;
   last_click.y = click.y;
@@ -19,6 +20,7 @@ function handle_mousemove_erase(event)
 {
   update_pos(event, click);
   var size = 100;
+  var gap = size; 
   var color = black;
   var from = {};
   from.x = last_click.x - size/2; 
@@ -27,7 +29,8 @@ function handle_mousemove_erase(event)
   to.x = click.x - size/2; 
   to.y = click.y - size/2; 
 
-  draw_line(from, to, size, color);
+  draw_line(from, to, size, color, gap);
+  send_draw_line(from, to, size, color, gap);
 
   last_click.x = click.x;
   last_click.y = click.y;
@@ -43,7 +46,10 @@ function handle_keypress(event)
   else if (key == 'e')
     draw_mode = 'erase';
   else if (key == 'c')
+  {
     draw_canvas_background();
+    send_draw_canvas_background();
+  }
 }
 
 function handle_typing(event)
@@ -52,7 +58,11 @@ function handle_typing(event)
   if (key == 'Escape' || key == 'Enter')
     stop_typing();
   else
-    draw_letter(key);
+  {
+    var width = draw_letter(key, text_cursor);
+    send_draw_letter(key, text_cursor);
+    text_cursor.x += width;
+  }
 }
 
 function start_drawing(event)

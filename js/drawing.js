@@ -43,26 +43,26 @@ function draw_rectangle(x, y, width, height, color)
   ctx.putImageData(image_data, x, y);
 }
 
-function draw_line(from, to, size, color)
+function draw_line(from, to, size, color, gap) 
 {
-  var distance = Math.abs(to.x - from.x) + Math.abs(to.y - from.y); 
-  for (var i = 0; i < distance; ++i)
+  var num_steps = (Math.abs(to.x - from.x) + Math.abs(to.y - from.y)) / gap; 
+  for (var i = 0; i < num_steps; ++i)
   {
-    var x = ((to.x * i) + (from.x * (distance - i))) / distance;
-    var y = ((to.y * i) + (from.y * (distance - i))) / distance;
+    var x = ((to.x * i) + (from.x * (num_steps - i))) / num_steps;
+    var y = ((to.y * i) + (from.y * (num_steps - i))) / num_steps;
     draw_rectangle(x, y, size, size, color); 
   }
 }
 
-function draw_letter(key)
+function draw_letter(key, pos)
 {
   var ctx = canvas.getContext('2d');
   ctx.font = '250% Arial';
   ctx.fillStyle = '#96A01E';
 
   var width = ctx.measureText(key).width;
-  ctx.fillText(key, text_cursor.x, text_cursor.y);
-  text_cursor.x += width;
+  ctx.fillText(key, pos.x, pos.y);
+  return width;
 }
 
 function draw_help()
