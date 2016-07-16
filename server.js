@@ -6,10 +6,10 @@ const path = require('path');
 console.log(__dirname)
 
 const PORT = process.env.PORT || 3000;
-const INDEX = path.join(__dirname, '../canvas.html');
+const INDEX = path.join(__dirname, 'canvas.html');
 
 const app = express();
-app.use(express.static('../'));
+app.use(express.static('.'));
 
 const server = app
     .use((req, res) => res.sendFile(INDEX) )

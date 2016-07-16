@@ -2,7 +2,7 @@
   "name": "sharepaint",
   "version": "1.0.0",
   "description": "",
-  "main": "canvas.js",
+  "main": "js/canvas.js",
   "scripts": {
     "start": "node server.js"
   },
