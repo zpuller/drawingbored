@@ -41,6 +41,17 @@ function draw_rectangle(x, y, width, height, color)
   ctx.putImageData(image_data, x, y);
 }
 
+function draw_line(from, to, size, color)
+{
+  var distance = Math.abs(to.x - from.x) + Math.abs(to.y - from.y); 
+  for (var i = 0; i < distance; ++i)
+  {
+    var x = ((to.x * i) + (from.x * (distance - i))) / distance;
+    var y = ((to.y * i) + (from.y * (distance - i))) / distance;
+    draw_rectangle(x, y, size, size, color); 
+  }
+}
+
 function draw_letter(key)
 {
   var ctx = canvas.getContext("2d");
@@ -66,7 +77,7 @@ function draw_help()
   text_cursor.y += 50; 
   ctx.fillText("erase: e", text_cursor.x, text_cursor.y);
   text_cursor.y += 50; 
-  ctx.fillText("text: t (click to type, esc to stop)", text_cursor.x, text_cursor.y);
+  ctx.fillText("text: t (click to type, esc/return to stop)", text_cursor.x, text_cursor.y);
   text_cursor.y += 50; 
   ctx.fillText("clear screen: c", text_cursor.x, text_cursor.y);
 }

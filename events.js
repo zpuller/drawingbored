@@ -5,13 +5,8 @@ function handle_mousemove_draw(event)
   update_pos(event, click);
   var size = 10;
   var color = beige;
-  var distance = click.x + click.y; 
-  for (var i = 0; i < distance; ++i)
-  {
-    var x = ((click.x * i) + (last_click.x * (distance - i))) / distance;
-    var y = ((click.y * i) + (last_click.y * (distance - i))) / distance;
-    draw_rectangle(x, y, size, size, color); 
-  }
+
+  draw_line(last_click, click, size, color);
 
   last_click.x = click.x;
   last_click.y = click.y;
@@ -22,13 +17,14 @@ function handle_mousemove_erase(event)
   update_pos(event, click);
   var size = 100;
   var color = black;
-  var distance = click.x + click.y; 
-  for (var i = 0; i < distance; i = i + 10)
-  {
-    var x = ((click.x * i) + (last_click.x * (distance - i))) / distance;
-    var y = ((click.y * i) + (last_click.y * (distance - i))) / distance;
-    draw_rectangle(x, y, size, size, color); 
-  }
+  var from = {};
+  from.x = last_click.x - size/2; 
+  from.y = last_click.y - size/2; 
+  var to = {}
+  to.x = click.x - size/2; 
+  to.y = click.y - size/2; 
+
+  draw_line(from, to, size, color);
 
   last_click.x = click.x;
   last_click.y = click.y;
@@ -50,7 +46,7 @@ function handle_keypress(event)
 function handle_typing(event)
 {
   var key = event.key;
-  if (key == "Escape")
+  if (key == "Escape" || key == "Enter")
     stop_typing();
   else
     draw_letter(key);
