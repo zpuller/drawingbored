@@ -1,3 +1,5 @@
+'use strict';
+
 function update_pos(event, obj)
 {
   obj.x = Math.floor(canvas.width * (event.offsetX / canvas.clientWidth));

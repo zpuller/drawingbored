@@ -21,13 +21,13 @@ var i = 0;
 //TODO need a heartbeat
 wss.on('connection', (ws) => {
   ws.id = i++;
-  console.log('Client %i connected', ws.id);
+  console.log('Client', ws.id, 'connected');
   ws.onmessage = function (event) {
     wss.clients.forEach((client) => {
       if (client.id != ws.id)
         client.send(event.data);
     });
   }
-  ws.on('close', () => console.log('Client %i disconnected', ws.id));
+  ws.on('close', () => console.log('Client', ws.id, 'disconnected'));
 });
 

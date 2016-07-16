@@ -1,5 +1,7 @@
-var canvas = document.getElementById("canvas");
-var tools = document.getElementById("tools");
+'use strict';
+
+var canvas = document.getElementById('canvas');
+var tools = document.getElementById('tools');
 
 var click = {};
 var last_click = {};
@@ -13,8 +15,8 @@ var black = [0, 0, 0, 255];
 
 function draw_canvas_background()
 {
-  var ctx = canvas.getContext("2d");
-  ctx.fillStyle = "rgb(0, 0, 0)";
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'rgb(0, 0, 0)';
   ctx.fillRect (0, 0, canvas.width, canvas.height);
 }
 
@@ -22,7 +24,7 @@ function draw_canvas_background()
 // reference if I want fancy pixel stuff later 
 function draw_rectangle(x, y, width, height, color)
 {
-  var ctx = canvas.getContext("2d");
+  var ctx = canvas.getContext('2d');
   var image_data = ctx.createImageData(width, height);
   var data  = image_data.data;
   for (var i = 0; i < data.length;)
@@ -54,9 +56,9 @@ function draw_line(from, to, size, color)
 
 function draw_letter(key)
 {
-  var ctx = canvas.getContext("2d");
-  ctx.font = "250% Arial";
-  ctx.fillStyle = "#96A01E";
+  var ctx = canvas.getContext('2d');
+  ctx.font = '250% Arial';
+  ctx.fillStyle = '#96A01E';
 
   var width = ctx.measureText(key).width;
   ctx.fillText(key, text_cursor.x, text_cursor.y);
@@ -68,16 +70,16 @@ function draw_help()
   text_cursor.x = 5;
   text_cursor.y = 0;
 
-  var ctx = canvas.getContext("2d");
-  ctx.font = "250% Arial";
-  ctx.fillStyle = "#96A01E";
+  var ctx = canvas.getContext('2d');
+  ctx.font = '250% Arial';
+  ctx.fillStyle = '#96A01E';
 
   text_cursor.y += 50; 
-  ctx.fillText("pen: p", text_cursor.x, text_cursor.y);
+  ctx.fillText('pen: p', text_cursor.x, text_cursor.y);
   text_cursor.y += 50; 
-  ctx.fillText("erase: e", text_cursor.x, text_cursor.y);
+  ctx.fillText('erase: e', text_cursor.x, text_cursor.y);
   text_cursor.y += 50; 
-  ctx.fillText("text: t (click to type, esc/return to stop)", text_cursor.x, text_cursor.y);
+  ctx.fillText('text: t (click to type, esc/return to stop)', text_cursor.x, text_cursor.y);
   text_cursor.y += 50; 
-  ctx.fillText("clear screen: c", text_cursor.x, text_cursor.y);
+  ctx.fillText('clear screen: c', text_cursor.x, text_cursor.y);
 }
