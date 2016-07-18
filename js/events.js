@@ -46,10 +46,7 @@ function handle_keypress(event)
   else if (key == 'e')
     draw_mode = 'erase';
   else if (key == 'c')
-  {
-    draw_canvas_background();
-    send_draw_canvas_background();
-  }
+    clear_screen();
 }
 
 function handle_typing(event)
@@ -118,4 +115,24 @@ function handle_mouseup(event)
   canvas.removeEventListener('mousemove', handle_mousemove_erase);
   canvas.removeEventListener('touchmove', handle_mousemove_draw);
   canvas.removeEventListener('touchmove', handle_mousemove_erase);
+}
+
+function clicked_button(button)
+{
+  var cb = (click.x < (button.x + button.width) 
+      && click.x > button.x 
+      && click.y < (button.y + button.height) 
+      && click.y > button.y); 
+
+  return cb;
+}
+
+function handle_clear_button()
+{
+  update_pos(event, click);
+  if (clicked_button(clear_button))  
+  {
+    clear_screen();
+    draw_clear_button();
+  }
 }

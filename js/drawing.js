@@ -13,6 +13,8 @@ canvas.height = 1080;
 var beige = [150, 160, 30, 255];
 var black = [0, 0, 0, 255];
 
+var clear_button = { x: 10, y: 20, width: 100, height: 100 };
+
 function draw_canvas_background()
 {
   var ctx = canvas.getContext('2d');
@@ -82,4 +84,24 @@ function draw_help()
   ctx.fillText('text: t (click to type, esc/return to stop)', text_cursor.x, text_cursor.y);
   text_cursor.y += 50; 
   ctx.fillText('clear screen: c', text_cursor.x, text_cursor.y);
+}
+
+function draw_clear_button_text()
+{
+  var ctx = canvas.getContext('2d');
+  ctx.font = '200% Arial';
+  ctx.fillStyle = '#96A01E';
+  var text_width = ctx.measureText('clear').width;
+
+  text_cursor.x = clear_button.x + .5*(clear_button.width - text_width);
+  text_cursor.y = clear_button.y + .55*clear_button.height;
+
+  ctx.fillText('clear', text_cursor.x, text_cursor.y);
+}
+
+function draw_clear_button()
+{
+  draw_rectangle(clear_button.x, clear_button.y, clear_button.width, clear_button.height, beige);
+  draw_rectangle(clear_button.x+3, clear_button.y+3, clear_button.width-6, clear_button.height-6, black);
+  draw_clear_button_text()
 }

@@ -8,4 +8,15 @@ window.addEventListener('keydown', handle_keypress);
 document.addEventListener('touchmove',function(event){ event.preventDefault(); }, false);
 
 draw_canvas_background();
-draw_help();
+
+var is_mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+
+if (is_mobile)
+{
+  draw_clear_button();
+  canvas.addEventListener('touchstart', handle_clear_button); 
+}
+else
+{
+  draw_help();
+}

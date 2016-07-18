@@ -11,7 +11,8 @@ function update_pos(event, obj)
   obj.y = Math.floor(canvas.height * ((event.offsetY || ipadY) / canvas.clientHeight));
 }
 
-
-//TODO
-var is_mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-console.log(is_mobile)
+function clear_screen()
+{
+  draw_canvas_background();
+  send_draw_canvas_background();
+}
