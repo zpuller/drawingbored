@@ -57,6 +57,17 @@ function handle_typing(event)
   var key = event.key;
   if (key == 'Escape' || key == 'Enter')
     stop_typing();
+  else if (
+      key == 'Shift' ||
+      key == 'CapsLock' ||
+      key == 'Tab' ||
+      key == 'Control' ||
+      key == 'Meta' ||
+      key == 'Alt' ||
+      key == 'Backspace')
+  {
+    return;
+  }
   else
   {
     var width = draw_letter(key, text_cursor);

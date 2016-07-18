@@ -13,4 +13,5 @@ function update_pos(event, obj)
 
 
 //TODO
-var is_safari_or_uiwebview = /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent);
+var is_mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+console.log(is_mobile)
