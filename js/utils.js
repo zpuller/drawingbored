@@ -10,3 +10,7 @@ function update_pos(event, obj)
   obj.x = Math.floor(canvas.width * ((event.offsetX || ipadX) / canvas.clientWidth));
   obj.y = Math.floor(canvas.height * ((event.offsetY || ipadY) / canvas.clientHeight));
 }
+
+
+//TODO
+var is_safari_or_uiwebview = /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent);
