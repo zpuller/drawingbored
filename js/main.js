@@ -20,3 +20,5 @@ else
 {
   draw_help();
 }
+
+setInterval(send_heartbeat, 5000)

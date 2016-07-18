@@ -7,6 +7,11 @@ ws.onmessage = function (event) {
   parse_msg(event.data);
 };
 
+function send_heartbeat()
+{
+  ws.send("ping");
+}
+
 function parse_msg(msg)
 {
   var arr = msg.split(':');
