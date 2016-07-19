@@ -21,7 +21,8 @@ function add_password_input()
 {
   password_input.type = 'text';
   password_input.oninput = handle_password_input;
-  password_input.addEventListener('keyup', handle_password_keyup);
+  password_input.addEventListener('keyup', handle_password_input_keyup);
   password_input.addEventListener('focus', handle_password_input_focus);
-  document.body.appendChild(password_input);
+  password_input.addEventListener('blur', handle_password_input_blur);
+  document.body.insertBefore(password_input, canvas);
 }

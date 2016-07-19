@@ -129,13 +129,18 @@ function clicked_button(button)
   return cb;
 }
 
-function handle_clear_button()
+function handle_buttons()
 {
   update_pos(event, click);
   if (clicked_button(clear_button))  
   {
     clear_screen();
     draw_clear_button();
+    draw_password_button();
+  }
+  else if (clicked_button(password_button))  
+  {
+    add_password_input();
   }
 }
 
@@ -144,7 +149,13 @@ function handle_password_input(event)
   send_update_password(event.target.value);
 }
 
-function handle_password_keyup(event)
+function handle_password_input_blur(event)
+{
+  document.body.removeChild(password_input);
+  window.addEventListener('keydown', handle_keypress); 
+}
+
+function handle_password_input_keyup(event)
 {
   if (event.key == 'Enter')
   {

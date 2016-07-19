@@ -1,3 +1,4 @@
+//TODO refactor buttons
 'use strict';
 
 var password_input = document.createElement('input'); 
@@ -15,7 +16,8 @@ draw_canvas_background();
 if (is_mobile)
 {
   draw_clear_button();
-  canvas.addEventListener('touchstart', handle_clear_button); 
+  draw_password_button();
+  canvas.addEventListener('touchstart', handle_buttons); 
 }
 else
 {
