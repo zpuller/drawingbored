@@ -18,15 +18,24 @@ const server = app
 const wss = new SocketServer({ server });
 
 var i = 0;
-//TODO need a heartbeat
 wss.on('connection', (ws) => {
   ws.id = i++;
+  ws.password = "";
   console.log('Client', ws.id, 'connected');
   ws.onmessage = function (event) {
-    wss.clients.forEach((client) => {
-      if (client.id != ws.id)
-        client.send(event.data);
-    });
+    var arr = event.data.split(':');
+    if (arr[0] == 'update_password')
+    {
+      ws.password = arr[1];
+    }
+    else
+    {
+      wss.clients.forEach((client) => {
+        if (client.id != ws.id && client.password == ws.password)
+          client.send(event.data);
+        }
+      );
+    }
   }
   ws.on('close', () => console.log('Client', ws.id, 'disconnected'));
 });

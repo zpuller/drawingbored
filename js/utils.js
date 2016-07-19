@@ -16,3 +16,12 @@ function clear_screen()
   draw_canvas_background();
   send_draw_canvas_background();
 }
+
+function add_password_input()
+{
+  password_input.type = 'text';
+  password_input.oninput = handle_password_input;
+  password_input.addEventListener('keyup', handle_password_keyup);
+  password_input.addEventListener('focus', handle_password_input_focus);
+  document.body.appendChild(password_input);
+}

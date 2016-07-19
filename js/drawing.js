@@ -77,13 +77,15 @@ function draw_help()
   ctx.fillStyle = '#96A01E';
 
   text_cursor.y += 50; 
-  ctx.fillText('pen: p', text_cursor.x, text_cursor.y);
+  ctx.fillText('draw: d', text_cursor.x, text_cursor.y);
   text_cursor.y += 50; 
   ctx.fillText('erase: e', text_cursor.x, text_cursor.y);
   text_cursor.y += 50; 
   ctx.fillText('text: t (click to type, esc/return to stop)', text_cursor.x, text_cursor.y);
-  text_cursor.y += 50; 
+  text_cursor.y += 50;
   ctx.fillText('clear screen: c', text_cursor.x, text_cursor.y);
+  text_cursor.y += 50;
+  ctx.fillText('password: p (private session)', text_cursor.x, text_cursor.y);
 }
 
 function draw_clear_button_text()

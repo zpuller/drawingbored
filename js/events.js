@@ -1,6 +1,6 @@
 'use strict';
 
-var draw_mode = 'pen';
+var draw_mode = 'draw';
 
 function handle_mousemove_draw(event)
 {
@@ -41,12 +41,14 @@ function handle_keypress(event)
   var key = event.key;
   if (key == 't')
     draw_mode = 'text';
-  else if (key == 'p')
-    draw_mode = 'pen';
+  else if (key == 'd')
+    draw_mode = 'draw';
   else if (key == 'e')
     draw_mode = 'erase';
   else if (key == 'c')
     clear_screen();
+  else if (key == 'p')
+    add_password_input();
 }
 
 function handle_typing(event)
@@ -102,7 +104,7 @@ function handle_mousedown(event)
   var left_click = event.which == 1 || event.which == 0;
   if (left_click)
   {
-    if (draw_mode == 'pen' || draw_mode == 'erase')
+    if (draw_mode == 'draw' || draw_mode == 'erase')
       start_drawing(event);
     else if (draw_mode == 'text')
       start_typing(event);
@@ -135,4 +137,23 @@ function handle_clear_button()
     clear_screen();
     draw_clear_button();
   }
+}
+
+function handle_password_input(event)
+{
+  send_update_password(event.target.value);
+}
+
+function handle_password_keyup(event)
+{
+  if (event.key == 'Enter')
+  {
+    document.body.removeChild(password_input);
+    window.addEventListener('keydown', handle_keypress); 
+  }
+}
+
+function handle_password_input_focus()
+{
+  window.removeEventListener('keydown', handle_keypress);
 }

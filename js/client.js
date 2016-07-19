@@ -7,9 +7,18 @@ ws.onmessage = function (event) {
   parse_msg(event.data);
 };
 
+function send_update_password(p)
+{
+  var arr = [];
+  arr.push('update_password');
+  arr.push(p);
+  var msg = arr.join(':');
+  ws.send(msg);
+}
+
 function send_heartbeat()
 {
-  ws.send("ping");
+  ws.send('ping');
 }
 
 function parse_msg(msg)
@@ -68,6 +77,6 @@ function send_draw_letter(key, pos)
 
 function send_draw_canvas_background()
 {
-  var msg = "draw_canvas_background";
+  var msg = 'draw_canvas_background';
   ws.send(msg);
 }
