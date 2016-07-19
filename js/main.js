@@ -26,8 +26,6 @@ var ws = new WebSocket(HOST);
 var p = window.location.pathname;
 
 ws.onopen = (() => send_update_password(p));
-ws.onmessage = function (event) {
-  parse_msg(event.data);
-};
+ws.onmessage = ((event) => parse_msg(event.data));
 
 setInterval(send_heartbeat, 5000);
