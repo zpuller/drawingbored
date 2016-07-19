@@ -1,12 +1,5 @@
 'use strict';
 
-var HOST = location.origin.replace(/^http/, 'ws')
-var ws = new WebSocket(HOST);
-
-ws.onmessage = function (event) {
-  parse_msg(event.data);
-};
-
 function send_update_password(p)
 {
   var arr = [];

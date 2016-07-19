@@ -1,7 +1,5 @@
-//TODO refactor buttons
 'use strict';
 
-var password_input = document.createElement('input'); 
 var is_mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
 canvas.addEventListener('touchstart', handle_mousedown);
@@ -16,7 +14,6 @@ draw_canvas_background();
 if (is_mobile)
 {
   draw_clear_button();
-  draw_password_button();
   canvas.addEventListener('touchstart', handle_buttons); 
 }
 else
@@ -24,4 +21,13 @@ else
   draw_help();
 }
 
-setInterval(send_heartbeat, 5000)
+var HOST = location.origin.replace(/^http/, 'ws')
+var ws = new WebSocket(HOST);
+var p = window.location.pathname;
+
+ws.onopen = (() => send_update_password(p));
+ws.onmessage = function (event) {
+  parse_msg(event.data);
+};
+
+setInterval(send_heartbeat, 5000);

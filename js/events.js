@@ -47,8 +47,6 @@ function handle_keypress(event)
     draw_mode = 'erase';
   else if (key == 'c')
     clear_screen();
-  else if (key == 'p')
-    add_password_input();
 }
 
 function handle_typing(event)
@@ -136,35 +134,5 @@ function handle_buttons()
   {
     clear_screen();
     draw_clear_button();
-    draw_password_button();
   }
-  else if (clicked_button(password_button))  
-  {
-    add_password_input();
-  }
-}
-
-function handle_password_input(event)
-{
-  send_update_password(event.target.value);
-}
-
-function handle_password_input_blur(event)
-{
-  document.body.removeChild(password_input);
-  window.addEventListener('keydown', handle_keypress); 
-}
-
-function handle_password_input_keyup(event)
-{
-  if (event.key == 'Enter')
-  {
-    document.body.removeChild(password_input);
-    window.addEventListener('keydown', handle_keypress); 
-  }
-}
-
-function handle_password_input_focus()
-{
-  window.removeEventListener('keydown', handle_keypress);
 }

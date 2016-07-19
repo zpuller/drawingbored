@@ -14,7 +14,6 @@ var beige = [150, 160, 30, 255];
 var black = [0, 0, 0, 255];
 
 var clear_button = { x: 10, y: 20, width: 100, height: 100 };
-var password_button = { x: 120, y: 20, width: 200, height: 100 };
 
 function draw_canvas_background()
 {
@@ -85,8 +84,6 @@ function draw_help()
   ctx.fillText('text: t (click to type, esc/return to stop)', text_cursor.x, text_cursor.y);
   text_cursor.y += 50;
   ctx.fillText('clear screen: c', text_cursor.x, text_cursor.y);
-  text_cursor.y += 50;
-  ctx.fillText('password: p (private session)', text_cursor.x, text_cursor.y);
 }
 
 function draw_clear_button_text()
@@ -107,24 +104,4 @@ function draw_clear_button()
   draw_rectangle(clear_button.x, clear_button.y, clear_button.width, clear_button.height, beige);
   draw_rectangle(clear_button.x+3, clear_button.y+3, clear_button.width-6, clear_button.height-6, black);
   draw_clear_button_text()
-}
-
-function draw_password_button_text()
-{
-  var ctx = canvas.getContext('2d');
-  ctx.font = '200% Arial';
-  ctx.fillStyle = '#96A01E';
-  var text_width = ctx.measureText('password').width;
-
-  text_cursor.x = password_button.x + .5*(password_button.width - text_width);
-  text_cursor.y = password_button.y + .55*password_button.height;
-
-  ctx.fillText('password', text_cursor.x, text_cursor.y);
-}
-
-function draw_password_button()
-{
-  draw_rectangle(password_button.x, password_button.y, password_button.width, password_button.height, beige);
-  draw_rectangle(password_button.x+3, password_button.y+3, password_button.width-6, password_button.height-6, black);
-  draw_password_button_text()
 }
