@@ -5,7 +5,7 @@ var draw_mode = 'draw';
 function handle_mousemove_draw(event)
 {
   update_pos(event, click);
-  var size = 10;
+  var size = 5;
   var color = beige;
   var gap = 1;
 
