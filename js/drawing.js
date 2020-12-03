@@ -7,10 +7,10 @@ var click = {};
 var last_click = {};
 var text_cursor = {};
 
-canvas.width = 1920;
-canvas.height = 1080;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-var beige = [150, 160, 30, 255];
+var white = [255, 255, 255, 255];
 var black = [0, 0, 0, 255];
 
 var clear_button = { x: 10, y: 20, width: 100, height: 100 };
@@ -49,7 +49,7 @@ var last_size = 1;//TODO bigger average
 function draw_line(from, to, size, color, gap) 
 {
   var distance = Math.abs(to.x - from.x) + Math.abs(to.y - from.y); 
-  var width = distance * size * .02;
+  var width = 5
   var calc_width = (last_size + width) / 2;
   last_size = width;
   var num_steps = distance / gap; 
@@ -79,7 +79,7 @@ function draw_help()
 
   var ctx = canvas.getContext('2d');
   ctx.font = '250% Arial';
-  ctx.fillStyle = '#96A01E';
+  ctx.fillStyle = '#FFFFFF';
 
   text_cursor.y += 50; 
   ctx.fillText('draw: d', text_cursor.x, text_cursor.y);
@@ -106,7 +106,7 @@ function draw_clear_button_text()
 
 function draw_clear_button()
 {
-  draw_rectangle(clear_button.x, clear_button.y, clear_button.width, clear_button.height, beige);
+  draw_rectangle(clear_button.x, clear_button.y, clear_button.width, clear_button.height, white);
   draw_rectangle(clear_button.x+3, clear_button.y+3, clear_button.width-6, clear_button.height-6, black);
   draw_clear_button_text()
 }

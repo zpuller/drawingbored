@@ -6,7 +6,7 @@ function handle_mousemove_draw(event)
 {
   update_pos(event, click);
   var size = 5;
-  var color = beige;
+  var color = white;
   var gap = 1;
 
   draw_line(last_click, click, size, color, gap);
