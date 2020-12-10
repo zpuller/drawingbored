@@ -65,7 +65,7 @@ function draw_letter(key, pos)
 {
   var ctx = canvas.getContext('2d');
   ctx.font = '250% Arial';
-  ctx.fillStyle = '#96A01E';
+  ctx.fillStyle = '#FFFFFF';
 
   var width = ctx.measureText(key).width;
   ctx.fillText(key, pos.x, pos.y);
