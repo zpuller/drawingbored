@@ -45,19 +45,15 @@ function draw_rectangle(x, y, width, height, color)
   ctx.putImageData(image_data, x, y);
 }
 
-var last_size = 1;//TODO bigger average
 function draw_line(from, to, size, color, gap) 
 {
   var distance = Math.abs(to.x - from.x) + Math.abs(to.y - from.y); 
-  var width = 5
-  var calc_width = (last_size + width) / 2;
-  last_size = width;
   var num_steps = distance / gap; 
   for (var i = 0; i < num_steps; ++i)
   {
     var x = ((to.x * i) + (from.x * (num_steps - i))) / num_steps;
     var y = ((to.y * i) + (from.y * (num_steps - i))) / num_steps;
-    draw_rectangle(x, y, calc_width, calc_width, color); 
+    draw_rectangle(x, y, size, size, color); 
   }
 }
 
