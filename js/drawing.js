@@ -1,7 +1,7 @@
 'use strict';
 
 var canvas = document.getElementById('canvas');
-var tools = document.getElementById('tools');
+var colors = document.getElementById('colors');
 
 var click = {};
 var last_click = {};
@@ -10,14 +10,23 @@ var text_cursor = {};
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-var white = [255, 255, 255, 255];
-var black = [0, 0, 0, 255];
+var bkg_color = [42, 42, 42]
+
+var light_grey = [95, 95, 95]
+var white = [234, 234, 234];
+var plum = [196, 146, 233]
+var crimson = [217, 18, 82]
+var turquoise = [63, 234, 212]
+var green_yellow = [165, 233, 61]
+var orange = [233, 132, 24]
+
+var active_color = white
 
 var clear_button = { x: 10, y: 20, width: 100, height: 100 };
 
 function draw_canvas_background() {
   var ctx = canvas.getContext('2d');
-  ctx.fillStyle = 'rgb(0, 0, 0)';
+  ctx.fillStyle = 'rgb(42, 42, 42)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -35,7 +44,7 @@ function draw_rectangle(x, y, width, height, color) {
     ++i;
     data[i] = color[2];
     ++i;
-    data[i] = color[3];
+    data[i] = 255;
     ++i;
   }
 
@@ -71,7 +80,7 @@ function draw_help() {
   ctx.fillStyle = '#FFFFFF';
 
   text_cursor.y += 50;
-  ctx.fillText('foo: d', text_cursor.x, text_cursor.y);
+  ctx.fillText('draw: d', text_cursor.x, text_cursor.y);
   text_cursor.y += 50;
   ctx.fillText('erase: e', text_cursor.x, text_cursor.y);
   text_cursor.y += 50;
@@ -94,6 +103,6 @@ function draw_clear_button_text() {
 
 function draw_clear_button() {
   draw_rectangle(clear_button.x, clear_button.y, clear_button.width, clear_button.height, white);
-  draw_rectangle(clear_button.x + 3, clear_button.y + 3, clear_button.width - 6, clear_button.height - 6, black);
+  draw_rectangle(clear_button.x + 3, clear_button.y + 3, clear_button.width - 6, clear_button.height - 6, light_grey);
   draw_clear_button_text()
 }

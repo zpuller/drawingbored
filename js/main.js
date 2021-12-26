@@ -8,16 +8,17 @@ canvas.addEventListener('mousedown', handle_mousedown);
 window.addEventListener('mouseup', handle_mouseup);
 window.addEventListener('keydown', handle_keypress);
 document.addEventListener('touchmove', function (event) { event.preventDefault(); }, false);
+colors.addEventListener('mousedown', handle_colors);
 
 draw_canvas_background();
 
-if (is_mobile) {
-  draw_clear_button();
-  canvas.addEventListener('touchstart', handle_buttons);
-}
-else {
-  draw_help();
-}
+// if (is_mobile) {
+//   draw_clear_button();
+//   canvas.addEventListener('touchstart', handle_buttons);
+// }
+// else {
+//   draw_help();
+// }
 
 var HOST = location.origin.replace(/^http/, 'ws')
 var ws = new WebSocket(HOST);

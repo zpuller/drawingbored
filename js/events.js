@@ -5,7 +5,7 @@ var draw_mode = 'draw';
 function handle_mousemove_draw(event) {
   update_pos(event, click);
   var size = 5;
-  var color = white;
+  var color = active_color;
   var gap = 1;
 
   draw_line(last_click, click, size, color, gap);
@@ -19,7 +19,7 @@ function handle_mousemove_erase(event) {
   update_pos(event, click);
   var size = 100;
   var gap = size;
-  var color = black;
+  var color = bkg_color;
   var from = {};
   from.x = last_click.x - size / 2;
   from.y = last_click.y - size / 2;
@@ -36,9 +36,9 @@ function handle_mousemove_erase(event) {
 
 function handle_keypress(event) {
   var key = event.key;
-  if (key == 't')
-    draw_mode = 'text';
-  else if (key == 'd')
+  // if (key == 't')
+  //   draw_mode = 'text';
+  if (key == 'd')
     draw_mode = 'draw';
   else if (key == 'e')
     draw_mode = 'erase';
@@ -114,10 +114,29 @@ function clicked_button(button) {
   return cb;
 }
 
-function handle_buttons() {
+function handle_buttons(event) {
   update_pos(event, click);
   if (clicked_button(clear_button)) {
     clear_screen();
     draw_clear_button();
+  }
+}
+
+function handle_colors(event) {
+  let y = event.offsetY
+  if (y < 73) {
+    active_color = light_grey
+  } else if (y < 135) {
+    active_color = white
+  } else if (y < 200) {
+    active_color = plum
+  } else if (y < 265) {
+    active_color = crimson
+  } else if (y < 330) {
+    active_color = turquoise
+  } else if (y < 395) {
+    active_color = green_yellow
+  } else if (y < 460) {
+    active_color = orange
   }
 }
