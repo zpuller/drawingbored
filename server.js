@@ -12,8 +12,8 @@ const app = express();
 app.use(express.static('.'));
 
 const server = app
-    .use((req, res) => res.sendFile(INDEX) )
-    .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+  .use((req, res) => res.sendFile(INDEX))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 const wss = new SocketServer({ server });
 
@@ -24,16 +24,14 @@ wss.on('connection', (ws) => {
   console.log('Client', ws.id, 'connected');
   ws.onmessage = function (event) {
     var arr = event.data.split(':');
-    if (arr[0] == 'update_password')
-    {
+    if (arr[0] == 'update_password') {
       ws.password = arr[1];
     }
-    else
-    {
+    else {
       wss.clients.forEach((client) => {
         if (client.id != ws.id && client.password == ws.password)
           client.send(event.data);
-        }
+      }
       );
     }
   }

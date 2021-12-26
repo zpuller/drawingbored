@@ -1,9 +1,7 @@
 'use strict';
 
-function update_pos(event, obj)
-{
-  if (event.targetTouches)
-  {
+function update_pos(event, obj) {
+  if (event.targetTouches) {
     var ipadX = event.targetTouches[0].pageX;
     var ipadY = event.targetTouches[0].pageY;
   }
@@ -11,8 +9,7 @@ function update_pos(event, obj)
   obj.y = Math.floor(canvas.height * ((event.offsetY || ipadY) / canvas.clientHeight));
 }
 
-function clear_screen()
-{
+function clear_screen() {
   draw_canvas_background();
   send_draw_canvas_background();
 }
