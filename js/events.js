@@ -3,8 +3,8 @@
 var draw_mode = 'draw';
 
 function handle_mousemove_draw(event) {
+  let size = event instanceof TouchEvent ? 3 + Math.floor(3 * event.touches[0].force) : 5;
   update_pos(event, click);
-  var size = 5;
   var color = active_color;
   var gap = 1;
 
